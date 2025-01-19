@@ -8,7 +8,7 @@ export default function Features(){
               <span className="text-primary"> Modern Trading</span>
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Experience a comprehensive suite of tools designed to give you the edge in today's markets.
+              Experience a comprehensive suite of tools designed to give you the edge in today&aposs markets.
             </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-6">

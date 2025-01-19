@@ -26,7 +26,7 @@ export function PriceChart({symbol}: {symbol: string}) {
     }
 
     useEffect(() =>{
-        var temp = new Date();
+        let temp = new Date();
         temp.setMonth(temp.getMonth() - 1);       
         console.log(temp.toLocaleDateString('IN'));
         console.log(temp.toLocaleTimeString('IN'))

@@ -18,7 +18,8 @@ async function fetchAllNews(){
         const data = await res.json();
         return data;
     }
-    catch(error){
+    catch(err){
+        console.log(err);
         throw new Error('Failed News');
     }
 }

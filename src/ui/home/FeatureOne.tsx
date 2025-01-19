@@ -45,7 +45,7 @@ const stockData = [
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-500 rounded-2xl blur opacity-30 animate-pulse" />
                 <div className="glass-card rounded-2xl p-6 relative">
                   <div className="grid grid-cols-2 gap-4">
-                    {stockData.slice(0, 4).map((stock, index) => (
+                    {stockData.slice(0, 4).map((stock) => (
                       <div
                         key={stock.symbol}
                         className="p-4 rounded-xl bg-background/50"

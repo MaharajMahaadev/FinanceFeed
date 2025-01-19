@@ -18,10 +18,10 @@ interface ChartData {
 
 export async function fetchChartInfo(symbol:string, chartMode:string){
     try{
-            var rangeStr: string = '';
-            var currDate = new Date();
+            let rangeStr: string = '';
+            let currDate = new Date();
             currDate.setDate(currDate.getDate() - 3);
-            var endDate = new Date();
+            let endDate = new Date();
             endDate.setDate(endDate.getDate() - 3);
             console.log(currDate, endDate);
 
@@ -49,7 +49,7 @@ export async function fetchChartInfo(symbol:string, chartMode:string){
             const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${symbol}/range/1/${rangeStr}/${fromDate}/${toDate}?adjusted=true&sort=asc&apiKey=${process.env.POLYGON_KEY}`);
             const res = await response.json();
 
-            var xIndices: number = 0;
+            let xIndices: number = 0;
 
             if(chartMode === 'day'){
               xIndices = Math.ceil(12/res.resultsCount);

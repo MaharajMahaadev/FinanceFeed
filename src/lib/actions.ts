@@ -11,10 +11,10 @@ type PriceData = {
     n: number;
   };
   
-  interface ChartData {
-    price: number,
-    date: string,
-  }
+interface ChartData {
+  price: number,
+  date: string,
+}
 
 export async function fetchChartInfo(symbol:string, chartMode:string){
     try{
@@ -90,4 +90,50 @@ export async function fetchChartInfo(symbol:string, chartMode:string){
         catch(err){
             console.log(err);
         }
+}
+
+type SuggDataValues = {
+  name:string;
+  amount: number;
+}
+
+type SuggData = {
+  date: string;
+  values: SuggDataValues[];
+}
+
+type SuggInfoFetched = {
+  buy: number;
+  hold: number;
+  period: string;
+  sell: number;
+  strongBuy: number;
+  strongSell: number;
+  symbol: string;
+}
+
+export async function fetchSuggInfo(symbol:string){
+  try{
+    const res = await fetch(`https://finnhub.io/api/v1/stock/recommendation?symbol=${symbol}&token=${process.env.FINNHUB_KEY}`)
+    const data = await res.json();
+
+    const suggData:SuggData[] = [];
+    
+    data.map((info:SuggInfoFetched) => {
+        suggData.push({date:info.period, values: [
+          {name:"Strong Buy", amount:info.strongBuy},
+          {name:"Buy", amount:info.buy},
+          {name:"Hold", amount:info.hold},
+          {name:"Sell", amount:info.sell},
+          {name:"Strong Sell", amount:info.strongSell}
+        ]})
+      })
+
+
+    return suggData
+  }
+  catch(err){
+    console.log(err);
+    throw new Error('Failed');
+  }
 }

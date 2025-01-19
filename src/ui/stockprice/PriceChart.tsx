@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/ui/components/card";
-import { Line, XAxis, YAxis, Tooltip } from 'recharts';
+import { Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { fetchChartInfo } from "@/lib/actions";
@@ -69,7 +69,8 @@ export function PriceChart({symbol}: {symbol: string}) {
       </CardHeader>
       <CardContent>
         <div className="h-[400px] w-full">
-            <LineChart width={700} height={400} data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
+          <ResponsiveContainer width="100%" height="100%">
+            <LineChart data={data} margin={{ top: 5, right: 5, left: 5, bottom: 5 }}>
               <XAxis 
                 dataKey="date" 
                 tick={{ fontSize: 12 }}
@@ -99,6 +100,7 @@ export function PriceChart({symbol}: {symbol: string}) {
                 dot={false}
               />
             </LineChart>
+            </ResponsiveContainer>
         </div>
       </CardContent>
     </Card>

@@ -1,5 +1,4 @@
 import { features } from "@/lib/features"
-import { Parallax } from "react-scroll-parallax"
 
 export default function Features(){
     return(
@@ -12,9 +11,9 @@ export default function Features(){
               Experience a comprehensive suite of tools designed to give you the edge in today's markets.
             </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-6">
             {features.map((feature, index) => (
-                <div className="group relative">
+                <div key={index} className="group relative">
                 <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-500" />
                 <div className="glass-card p-8 rounded-2xl relative group-hover:translate-y-[-4px] transition duration-500">
                   <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>

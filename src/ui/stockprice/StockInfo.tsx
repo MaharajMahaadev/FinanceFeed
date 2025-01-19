@@ -44,7 +44,7 @@ export async function StockInfo({symbol} : {symbol:string}) {
         <CardTitle>{companyInfo?.name}</CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="space-y-4">
+        <div className="space-y-4 mt-8">
           <div className="grid grid-cols-2 gap-4">
             <div className="flex items-center space-x-2">
               <Globe className="h-4 w-4 text-muted-foreground" />

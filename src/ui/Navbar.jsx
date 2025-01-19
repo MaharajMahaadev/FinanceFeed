@@ -11,9 +11,6 @@ export default function Navbar(){
             <h1 className="text-2xl font-bold">Finance Feed</h1>
             </Link>
             <nav className="hidden md:flex gap-6">
-            <Link href="/stockprice">
-              <p className="text-sm font-medium hover:text-primary">Dashboard</p>
-            </Link>
             <Link href="/news">
               <p className="text-sm font-medium text-muted-foreground hover:text-primary">News</p>
             </Link>

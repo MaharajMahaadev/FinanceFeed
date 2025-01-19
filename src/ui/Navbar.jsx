@@ -1,6 +1,7 @@
 import Link from "next/link"
 import SearchBar from "./components/SearchBar"
 import { ThemeToggle } from "./components/theme-toggle"
+import { Suspense } from "react"
 
 export default function Navbar(){
     return(
@@ -11,13 +12,16 @@ export default function Navbar(){
             <h1 className="text-2xl font-bold">Finance Feed</h1>
             </Link>
             <nav className="hidden md:flex gap-6">
+            
             <Link href="/news">
               <p className="text-sm font-medium text-muted-foreground hover:text-primary">News</p>
             </Link>
             </nav>
           </div>
           <div className="flex items-center gap-4">
+            <Suspense>
             <SearchBar />
+            </Suspense>
             <ThemeToggle />
           </div>
         </div>

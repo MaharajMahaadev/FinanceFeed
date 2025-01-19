@@ -2,6 +2,7 @@
 
 import Main from "@/ui/home/Main";
 import Features from "@/ui/home/Features";
+import FeaturesOne from "@/ui/home/FeatureOne";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 export default function Page() {

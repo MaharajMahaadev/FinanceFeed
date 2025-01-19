@@ -2,6 +2,7 @@ import { RecommendationChart } from "@/ui/stockprice/RecommendationChart";
 import { StockInfo } from "@/ui/stockprice/StockInfo";
 import { StockPrice } from "@/ui/stockprice/StockPrice";
 import { PriceChart } from "@/ui/stockprice/PriceChart";
+import { Button } from "@/ui/components/button";
 
 export default async function Page(props: {
   searchParams?: Promise<{

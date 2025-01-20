@@ -25,6 +25,12 @@ async function getPrice(symbol:string) {
   }
 }
 
+const convertTime = (val:EpochTimeStamp) => {
+  let temp = new Date(val*1000);
+
+  return temp;
+}
+
 export async function StockPrice({symbol}: {symbol: string}) {
 
   const quoteData:StockPrice = await getPrice(symbol);
@@ -77,15 +83,15 @@ export async function StockPrice({symbol}: {symbol: string}) {
               <span className="text-sm font-medium">Percentage Change</span>
             </div>
             <p className="text-2xl font-bold">{quoteData?.dp}%</p>
-          </div>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
+          </div>     
+        </div>
+        <div className="space-y-2">
+            <div className="flex items-center mt-3 space-x-2">
               <Clock className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-medium">Last Updated</span>
             </div>
-            <p className="text-2xl font-bold">{quoteData?.t.toLocaleString("in")}</p>
+            <p className="text-2xl font-bold">{convertTime(quoteData?.t).toLocaleString('in')}</p>
           </div>
-        </div>
         <div className="mt-4 pt-4 border-t">
           <div className="flex justify-between items-center">
             <span className="text-sm text-muted-foreground">Day Range</span>

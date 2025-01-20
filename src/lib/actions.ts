@@ -16,6 +16,12 @@ interface ChartData {
   date: string,
 }
 
+function convertTime(date:EpochTimeStamp){
+  const val = new Date(date);
+
+  return val;
+}
+
 export async function fetchChartInfo(symbol:string, chartMode:string){
     try{
             let rangeStr: string = '';
@@ -49,39 +55,15 @@ export async function fetchChartInfo(symbol:string, chartMode:string){
             const response = await fetch(`https://api.polygon.io/v2/aggs/ticker/${symbol}/range/1/${rangeStr}/${fromDate}/${toDate}?adjusted=true&sort=asc&apiKey=${process.env.POLYGON_KEY}`);
             const res = await response.json();
 
-            let xIndices: number = 0;
-
-            if(chartMode === 'day'){
-              xIndices = Math.ceil(12/res.resultsCount);
-            }
-            else if(chartMode === 'week'){
-              xIndices = Math.ceil(40/res.resultsCount);       
-            }
-            else if(chartMode === 'month'){
-              xIndices = Math.floor(720/res.resultsCount);
-            }
-            else if(chartMode === 'year'){
-              xIndices = Math.floor(364/res.resultsCount);
-            }
-            
-            endDate.setHours(10);
-            endDate.setMinutes(0);
-            xIndices === 0 ? xIndices = 1 : xIndices = xIndices;
-
             const dataVal: ChartData[] = [];
             res.results.map((item: PriceData) => {
                 if(chartMode === 'day'){
-                  dataVal.push({price: item.c, date: endDate.toLocaleTimeString('IN')});
-                  endDate.setHours(endDate.getHours() + xIndices);
+                  dataVal.push({price: item.c, date: convertTime(item.t).toLocaleTimeString('IN')});
                 }
-                else if(chartMode === 'week' || chartMode === 'month'){
-                  dataVal.push({price: item.c, date: endDate.toLocaleDateString('IN')});
-                  endDate.setHours(endDate.getHours() + xIndices);
+                else if(chartMode === 'week' || chartMode === 'month' || chartMode === 'year'){
+                  dataVal.push({price: item.c, date: convertTime(item.t).toLocaleDateString('IN')});
                 }
-                else if(chartMode === 'year'){
-                  dataVal.push({price: item.c, date: endDate.toLocaleDateString('IN')});
-                  endDate.setDate(endDate.getDate() + xIndices);
-                }
+                
                 console.log(item.c, endDate.toString());
             })
             
